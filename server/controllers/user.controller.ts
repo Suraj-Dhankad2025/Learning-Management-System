@@ -38,18 +38,17 @@ export const registrationUser = CatchAsyncError(
       );
       try {
         await sendMail({
-            email: user.email,
-            subject: "Activate your account",
-            template: "activation-mail.ejs",
-            data,
-           
+          email: user.email,
+          subject: "Activate your account",
+          template: "activation-mail.ejs",
+          data,
         });
         res.status(201).json({
           success: true,
           message: `Please check your email ${user.email} to activate your account}`,
           activationToken: activationToken.token,
         });
-      } catch (error:any) {
+      } catch (error: any) {
         return new ErrorHandler(error.message, 400);
       }
     } catch (error: any) {
