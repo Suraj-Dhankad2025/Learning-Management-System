@@ -3,6 +3,6 @@
 ### Node ###
 
 # Ignore node_modules and its child directories
-node_modules/
+./server/node_modules/
 # dotenv environment variable files
-.env
+./server/.env
