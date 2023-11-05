@@ -1,27 +1,61 @@
-import express from 'express';
-import {activateUser, getUserInfo, loginUser, logoutUser, registrationUser, socialAuth, updateAccessToken, updatePassword, updateProfilePicture, updateUserInfo} from '../controllers/user.controller';
-import { isAuthenticated } from '../middlewares/auth';
+import express from "express";
+import {
+  activateUser,
+  getAllUsers,
+  getUserInfo,
+  loginUser,
+  logoutUser,
+  registrationUser,
+  socialAuth,
+  updateAccessToken,
+  updatePassword,
+  updateProfilePicture,
+  updateUserInfo,
+  updateUserRole,
+  deleteUser
+} from "../controllers/user.controller";
+import { authorizeRoles, isAuthenticated } from "../middlewares/auth";
 
 const userRouter = express.Router();
 
-userRouter.post('/registration', registrationUser);
+userRouter.post("/registration", registrationUser);
 
-userRouter.post('/activate-user', activateUser);
+userRouter.post("/activate-user", activateUser);
 
-userRouter.post('/login', loginUser);
+userRouter.post("/login", loginUser);
 
-userRouter.get('/logout', isAuthenticated, logoutUser);
+userRouter.get("/logout", isAuthenticated, logoutUser);
 
-userRouter.get('/refreshToken', updateAccessToken);
+userRouter.get("/refresh", updateAccessToken);
 
-userRouter.get('/me', isAuthenticated, getUserInfo);
+userRouter.get("/me", isAuthenticated, getUserInfo);
 
-userRouter.get('/social-auth', socialAuth);
+userRouter.post("/social-auth", socialAuth);
 
-userRouter.get('/update-user-info', isAuthenticated, updateUserInfo);
+userRouter.put("/update-user-info", isAuthenticated, updateUserInfo);
 
-userRouter.get('/update-user-password', isAuthenticated, updatePassword);
+userRouter.put("/update-user-password", isAuthenticated, updatePassword);
 
-userRouter.get('/update-user-avatar', isAuthenticated, updateProfilePicture);
+userRouter.put("/update-user-avatar", isAuthenticated, updateProfilePicture);
+
+userRouter.get(
+  "/get-users",
+  isAuthenticated,
+  authorizeRoles("admin"),
+  getAllUsers
+);
+
+userRouter.put(
+  "/update-user",
+  isAuthenticated,
+  authorizeRoles("admin"),
+  updateUserRole
+);
+userRouter.delete(
+  "/delete-user",
+  isAuthenticated,
+  authorizeRoles("admin"),
+  deleteUser
+);
 
 export default userRouter;
