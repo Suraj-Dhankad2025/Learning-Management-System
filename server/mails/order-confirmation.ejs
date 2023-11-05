@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .order-details {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Confirmation</h1>
+    <div class="container">
+        <p>Thank you for your order with us. Here are the details of your order:</p>
+        <div class="order-details">
+            <p>Order ID: <%= order._id %></p>
+            <p>Course Name: <%= order.name %></p>
+            <p>Price: $<%= order.price %></p>
+            <p>Order Date: <%= order.date %></p>
+            <p>Payment Information: <%= order.payment_info %></p>
+            <p>Please keep this information for your records.</p>
+        </div>
+        <p>If you have any questions or concerns, please don't hesitate to contact us.</p>
+        <p>Thank you for choosing our services!</p>
+    </div>
+</body>
+</html>
