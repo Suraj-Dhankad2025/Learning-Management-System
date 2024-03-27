@@ -47,7 +47,7 @@ const Header: FC<Props> = ({ activeItem, setOpen }) => {
                             <Link href={"/"}
                                 className={'text-[25px] font-Poppins font-[500] text-black dark:text-white'}
                             >
-                                TechSpot
+                                Echo 
                             </Link>
                         </div>
                         <div className='flex items-center'>
